@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Hub | Shkolla 7 Marsi</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/logo.png">
+</head>
+<body class="is-gated">
+
+  <!-- ══════════════════════════════════════════
+       GATE / LOGIN
+  ══════════════════════════════════════════ -->
+  <div id="gate" class="gate">
+
+    <!-- SPLASH -->
+    <section class="gate-screen is-visible" id="screen-splash">
+      <div class="splash-card">
+        <div class="splash-logo-wrap">
+          <img src="images/logo.png" alt="Shkolla 7 Marsi logo">
+        </div>
+        <h1>School Hub</h1>
+        <p class="splash-made-for">Shkolla 7 Marsi</p>
+        <button class="btn btn-primary btn-wide" id="btn-continue" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- LANGUAGE PICK -->
+    <section class="gate-screen" id="screen-lang">
+      <div class="splash-card">
+        <div class="splash-logo-wrap">
+          <img src="images/logo.png" alt="Shkolla 7 Marsi logo">
+        </div>
+        <h1>School Hub</h1>
+        <p class="splash-made-for">Shkolla 7 Marsi</p>
+        <p class="lang-prompt">Choose your language / Zgjidhni gjuhën / Choisissez la langue</p>
+        <div class="lang-grid">
+          <button class="lang-btn" type="button" data-lang="en">🇬🇧 English</button>
+          <button class="lang-btn" type="button" data-lang="sq">🇦🇱 Shqip</button>
+          <button class="lang-btn" type="button" data-lang="fr">🇫🇷 Français</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGE PICK — for login flow -->
+    <section class="gate-screen" id="screen-lang-login">
+      <div class="splash-card">
+        <div class="splash-logo-wrap">
+          <img src="images/logo.png" alt="Shkolla 7 Marsi logo">
+        </div>
+        <h1>School Hub</h1>
+        <p class="splash-made-for">Shkolla 7 Marsi</p>
+        <p class="lang-prompt">Choose your language / Zgjidhni gjuhën / Choisissez la langue</p>
+        <div class="lang-grid">
+          <button class="lang-btn-login" type="button" data-lang="en">🇬🇧 English</button>
+          <button class="lang-btn-login" type="button" data-lang="sq">🇦🇱 Shqip</button>
+          <button class="lang-btn-login" type="button" data-lang="fr">🇫🇷 Français</button>
+        </div>
+        <button class="btn btn-text" type="button" data-go="splash" style="margin-top:12px;">← Back</button>
+      </div>
+    </section>
+
+    <!-- ROLE CHOICE -->
+    <section class="gate-screen" id="screen-role">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2 data-i18n="whoAreYou"></h2>
+        <p class="section-lead" data-i18n="chooseAccountType"></p>
+        <div class="role-grid role-grid--two">
+          <button class="role-card" type="button" data-role-choice="pupil">
+            <span>👨‍🎓</span>
+            <strong data-i18n="rolePupil"></strong>
+            <p data-i18n="rolePupilDesc"></p>
+          </button>
+          <button class="role-card" type="button" data-role-choice="teacher">
+            <span>👨‍🏫</span>
+            <strong data-i18n="roleTeacher"></strong>
+            <p data-i18n="roleTeacherDesc"></p>
+          </button>
+        </div>
+        <button class="btn btn-text" type="button" data-go="splash" data-i18n="back"></button>
+      </div>
+    </section>
+
+    <!-- PUPIL — SIGN UP or LOG IN choice -->
+    <section class="gate-screen" id="screen-pupil-choice">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2 data-i18n="rolePupil"></h2>
+        <div class="auth-choice-btns">
+          <button class="btn btn-primary btn-wide" type="button" id="btn-pupil-signup" data-i18n="signUp"></button>
+          <button class="btn btn-ghost btn-wide" type="button" id="btn-pupil-login" data-i18n="logIn"></button>
+        </div>
+        <button class="btn btn-text" type="button" data-go="role" data-i18n="back"></button>
+      </div>
+    </section>
+
+    <!-- PUPIL SIGN UP -->
+    <section class="gate-screen" id="screen-pupil-signup">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2 data-i18n="createPupilAccount"></h2>
+        <p class="section-lead" data-i18n="pupilSignupLead"></p>
+        <p class="form-alert" id="pupil-signup-alert" hidden></p>
+        <form id="form-pupil-signup" class="auth-form login-form">
+          <label data-i18n="firstName">
+            <input name="firstName" required autocomplete="given-name">
+          </label>
+          <label data-i18n="lastName">
+            <input name="lastName" required autocomplete="family-name">
+          </label>
+          <label data-i18n="grade">
+            <select name="grade" required>
+              <option value="" data-i18n="chooseGrade"></option>
+              <option value="5">5</option>
+              <option value="6">6</option><option value="7">7</option>
+              <option value="8">8</option><option value="9">9</option>
+            </select>
+          </label>
+          <label data-i18n="class">
+            <select name="classLetter" required>
+              <option value="" data-i18n="chooseClass"></option>
+              <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+            </select>
+          </label>
+          <label data-i18n="accessCode">
+            <input name="code" type="password" placeholder="STU-XX-XXXX-XXXX-XXXX-XXXX" required autocomplete="off">
+          </label>
+          <label data-i18n="choosePassword">
+            <input name="password" type="password" minlength="4" required autocomplete="new-password">
+          </label>
+          <!-- Optional profile photo -->
+          <div class="avatar-picker-wrap">
+            <div class="avatar-preview" id="pupil-avatar-preview">
+              <svg class="avatar-grey" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="40" fill="#d1d9e0"/><circle cx="40" cy="30" r="14" fill="#9aaab4"/><ellipse cx="40" cy="68" rx="22" ry="16" fill="#9aaab4"/></svg>
+            </div>
+            <label class="avatar-picker-btn" for="pupil-photo-input">📷 Add a profile photo <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(optional)</span></label>
+            <input id="pupil-photo-input" name="photo" type="file" accept="image/*" style="display:none">
+          </div>
+          <button class="btn btn-primary btn-wide" type="submit" data-i18n="createAccount"></button>
+        </form>
+        <button class="btn btn-text" type="button" data-go="pupil-choice" data-i18n="back"></button>
+      </div>
+    </section>
+
+    <!-- PUPIL LOG IN -->
+    <section class="gate-screen" id="screen-pupil-login">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2 data-i18n="pupilLogIn"></h2>
+        <p class="section-lead" data-i18n="pupilLoginLead"></p>
+        <p class="form-alert" id="pupil-login-alert" hidden></p>
+        <form id="form-pupil-login" class="auth-form login-form">
+          <label data-i18n="grade">
+            <select name="grade" required>
+              <option value="" data-i18n="chooseGrade"></option>
+              <option value="5">5</option>
+              <option value="6">6</option><option value="7">7</option>
+              <option value="8">8</option><option value="9">9</option>
+            </select>
+          </label>
+          <label data-i18n="class">
+            <select name="classLetter" required>
+              <option value="" data-i18n="chooseClass"></option>
+              <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+            </select>
+          </label>
+          <label data-i18n="password">
+            <input name="password" type="password" required autocomplete="current-password">
+          </label>
+          <button class="btn btn-primary btn-wide" type="submit" data-i18n="enter"></button>
+        </form>
+        <button class="btn btn-text" type="button" data-go="pupil-choice" data-i18n="back"></button>
+      </div>
+    </section>
+
+    <!-- TEACHER — SIGN UP or LOG IN choice -->
+    <section class="gate-screen" id="screen-teacher-choice">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2 data-i18n="roleTeacher"></h2>
+        <div class="auth-choice-btns">
+          <button class="btn btn-primary btn-wide" type="button" id="btn-teacher-signup" data-i18n="signUp"></button>
+          <button class="btn btn-ghost btn-wide" type="button" id="btn-teacher-login" data-i18n="logIn"></button>
+        </div>
+        <button class="btn btn-text" type="button" data-go="role" data-i18n="back"></button>
+      </div>
+    </section>
+
+    <!-- TEACHER SIGN UP -->
+    <section class="gate-screen" id="screen-teacher-signup">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2 data-i18n="createTeacherAccount"></h2>
+        <p class="section-lead" data-i18n="teacherSignupLead"></p>
+        <p class="form-alert" id="teacher-signup-alert" hidden></p>
+        <form id="form-teacher-signup" class="auth-form login-form">
+          <label data-i18n="firstName">
+            <input name="firstName" required autocomplete="given-name">
+          </label>
+          <label data-i18n="lastName">
+            <input name="lastName" required autocomplete="family-name">
+          </label>
+          <label data-i18n="grade">
+            <select name="grade" required>
+              <option value="" data-i18n="chooseGrade"></option>
+              <option value="5">5</option>
+              <option value="6">6</option><option value="7">7</option>
+              <option value="8">8</option><option value="9">9</option>
+            </select>
+          </label>
+          <label data-i18n="class">
+            <select name="classLetter" required>
+              <option value="" data-i18n="chooseClass"></option>
+              <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+            </select>
+          </label>
+          <label data-i18n="accessCode">
+            <input name="code" type="password" placeholder="TCH-XX-XXXX-XXXX-XXXX-XXXX" required autocomplete="off">
+          </label>
+          <label data-i18n="choosePassword">
+            <input name="password" type="password" minlength="4" required autocomplete="new-password">
+          </label>
+          <!-- Optional profile photo -->
+          <div class="avatar-picker-wrap">
+            <div class="avatar-preview" id="teacher-avatar-preview">
+              <svg class="avatar-grey" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="40" fill="#d1d9e0"/><circle cx="40" cy="30" r="14" fill="#9aaab4"/><ellipse cx="40" cy="68" rx="22" ry="16" fill="#9aaab4"/></svg>
+            </div>
+            <label class="avatar-picker-btn" for="teacher-photo-input">📷 Add a profile photo <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(optional)</span></label>
+            <input id="teacher-photo-input" name="photo" type="file" accept="image/*" style="display:none">
+          </div>
+          <button class="btn btn-primary btn-wide" type="submit" data-i18n="createAccount"></button>
+        </form>
+        <button class="btn btn-text" type="button" data-go="teacher-choice" data-i18n="back"></button>
+      </div>
+    </section>
+
+    <!-- TEACHER LOG IN -->
+    <section class="gate-screen" id="screen-teacher-login">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2 data-i18n="teacherLogIn"></h2>
+        <p class="section-lead" data-i18n="teacherLoginLead"></p>
+        <p class="form-alert" id="teacher-login-alert" hidden></p>
+        <form id="form-teacher-login" class="auth-form login-form">
+          <label data-i18n="grade">
+            <select name="grade" required>
+              <option value="" data-i18n="chooseGrade"></option>
+              <option value="5">5</option>
+              <option value="6">6</option><option value="7">7</option>
+              <option value="8">8</option><option value="9">9</option>
+            </select>
+          </label>
+          <label data-i18n="class">
+            <select name="classLetter" required>
+              <option value="" data-i18n="chooseClass"></option>
+              <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+            </select>
+          </label>
+          <label data-i18n="password">
+            <input name="password" type="password" required autocomplete="current-password">
+          </label>
+          <button class="btn btn-primary btn-wide" type="submit" data-i18n="enter"></button>
+        </form>
+        <button class="btn btn-text" type="button" data-go="teacher-choice" data-i18n="back"></button>
+      </div>
+    </section>
+
+    <!-- PUPIL PENDING APPROVAL -->
+    <section class="gate-screen" id="screen-pupil-pending">
+      <div class="auth-card pending-screen">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <div class="pending-icon">⏳</div>
+        <h2>Waiting for Approval</h2>
+        <p class="section-lead">Your account is waiting for teacher approval. Come back soon!</p>
+        <button class="btn btn-text" type="button" data-go="splash">Back to start</button>
+      </div>
+    </section>
+
+    <!-- ADMIN (hidden — access via index.html#admin) -->
+    <section class="gate-screen" id="screen-admin-login">
+      <div class="auth-card">
+        <img class="auth-mini-logo" src="images/logo.png" alt="">
+        <h2>School Office</h2>
+        <p class="form-alert" id="admin-alert" hidden></p>
+        <form id="form-admin-login" class="auth-form login-form">
+          <label>Username <input name="username" autocomplete="username" required></label>
+          <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="btn btn-primary btn-wide" type="submit">Log in</button>
+        </form>
+        <button class="btn btn-text" type="button" data-go="role">Back</button>
+      </div>
+    </section>
+
+  </div>
+  <!-- END GATE -->
+
+  <!-- ══════════════════════════════════════════
+       APP SHELL
+  ══════════════════════════════════════════ -->
+  <div id="app-shell" hidden>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#home" data-page="home">
+          <span class="logo-circle" aria-hidden="true"><img src="images/logo.png" alt=""></span>
+          <span>School Hub</span>
+        </a>
+        <div class="header-tools">
+          <span class="user-chip" id="user-chip"></span>
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+        <nav class="main-nav" id="main-nav"></nav>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- HOME -->
+      <section id="home" class="page is-visible" data-page="home">
+        <div class="hero">
+          <div class="container hero-inner">
+            <p class="eyebrow" id="home-eyebrow"></p>
+            <h1 id="home-title"></h1>
+            <p class="hero-text" id="home-text"></p>
+            <div class="hero-actions" id="home-actions"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="quick-links" id="quick-links"></div>
+          <!-- Pupil of the month — only shown if teacher has added one -->
+          <section id="sotm-section" class="block" hidden>
+            <h2 class="section-title">🏆 <span data-i18n="pupilOfMonth"></span></h2>
+            <article class="sotm-card" id="sotm-card"></article>
+          </section>
+          <section id="school-clubs" class="block">
+            <h2 class="section-title">🏫 <span data-i18n="schoolClubs"></span></h2>
+            <p class="section-lead" data-i18n="schoolClubsLead"></p>
+            <div class="club-grid" id="club-grid"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ANNOUNCEMENTS -->
+      <section id="announcements" class="page" data-page="announcements">
+        <div class="page-banner">
+          <div class="container">
+            <h1>📢 <span data-i18n="announcements"></span></h1>
+            <p data-i18n="announcementsLead"></p>
+          </div>
+        </div>
+        <div class="container stack">
+          <!-- Teacher add button -->
+          <button class="btn btn-primary add-fab" id="btn-add-announcement" type="button" hidden>＋</button>
+          <!-- Teacher form (hidden by default, toggled by + button) -->
+          <form class="info-card editor" id="form-announcement" hidden>
+            <h2 data-i18n="postAnnouncement"></h2>
+            <label data-i18n="title"><input name="title" required></label>
+            <label data-i18n="text"><textarea name="body" rows="3" required></textarea></label>
+            <label data-i18n="addImage">
+              <input name="image" type="file" accept="image/*">
+            </label>
+            <label data-i18n="addFile">
+              <input name="attachment" type="file">
+            </label>
+            <div class="form-row">
+              <button class="btn btn-primary" type="submit" data-i18n="post"></button>
+              <button class="btn btn-text" type="button" id="btn-cancel-announcement" data-i18n="cancel"></button>
+            </div>
+          </form>
+          <div id="announcement-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- TIMETABLE -->
+      <section id="timetable" class="page" data-page="timetable">
+        <div class="page-banner">
+          <div class="container">
+            <h1>🗓️ <span data-i18n="timetable"></span></h1>
+            <p data-i18n="timetableLead"></p>
+          </div>
+        </div>
+        <div class="container stack">
+          <p class="hint-box" id="schedule-hint" hidden data-i18n="scheduleHint"></p>
+          <div class="table-wrap">
+            <table class="timetable" id="timetable-table"></table>
+          </div>
+          <button class="btn btn-primary" id="btn-save-schedule" type="button" hidden data-i18n="saveTimetable"></button>
+        </div>
+      </section>
+
+      <!-- EVENTS -->
+      <section id="events" class="page" data-page="events">
+        <div class="page-banner">
+          <div class="container">
+            <h1>🎉 <span data-i18n="events"></span></h1>
+            <p data-i18n="eventsLead"></p>
+          </div>
+        </div>
+        <div class="container stack">
+          <button class="btn btn-primary add-fab" id="btn-add-event" type="button" hidden>＋</button>
+          <form class="info-card editor" id="form-event" hidden>
+            <h2 data-i18n="addEvent"></h2>
+            <label data-i18n="eventName"><input name="title" required></label>
+            <label data-i18n="when"><input name="when" placeholder="Friday 10 October" required></label>
+            <label data-i18n="details"><textarea name="body" rows="3" required></textarea></label>
+            <label data-i18n="addImage"><input name="image" type="file" accept="image/*"></label>
+            <label data-i18n="addFile"><input name="attachment" type="file"></label>
+            <div class="form-row">
+              <button class="btn btn-primary" type="submit" data-i18n="addEvent"></button>
+              <button class="btn btn-text" type="button" id="btn-cancel-event" data-i18n="cancel"></button>
+            </div>
+          </form>
+          <div id="event-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- NATURE -->
+      <section id="nature" class="page" data-page="nature">
+        <div class="page-banner nature-banner">
+          <div class="container">
+            <h1>🌱 <span data-i18n="nature"></span></h1>
+            <p data-i18n="natureLead"></p>
+          </div>
+        </div>
+        <div class="container stack">
+          <button class="btn btn-primary add-fab" id="btn-add-nature" type="button" hidden>＋</button>
+          <form class="info-card editor" id="form-nature" hidden>
+            <h2 data-i18n="addNatureNote"></h2>
+            <label data-i18n="title"><input name="title" required></label>
+            <label data-i18n="text"><textarea name="body" rows="4" required></textarea></label>
+            <label data-i18n="addImage"><input name="image" type="file" accept="image/*"></label>
+            <label data-i18n="addFile"><input name="attachment" type="file"></label>
+            <div class="form-row">
+              <button class="btn btn-primary" type="submit" data-i18n="add"></button>
+              <button class="btn btn-text" type="button" id="btn-cancel-nature" data-i18n="cancel"></button>
+            </div>
+          </form>
+          <div id="nature-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- IDEAS -->
+      <section id="ideas" class="page" data-page="ideas">
+        <div class="page-banner">
+          <div class="container">
+            <h1>💡 <span data-i18n="ideas"></span></h1>
+            <p id="ideas-lead"></p>
+          </div>
+        </div>
+        <div class="container stack">
+          <form class="info-card editor" id="form-idea" hidden>
+            <h2 data-i18n="sendIdea"></h2>
+            <label data-i18n="yourIdea">
+              <textarea name="body" rows="4" required></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit" data-i18n="sendToSchool"></button>
+          </form>
+          <div id="idea-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- NOTIFICATIONS / ALERTS -->
+      <section id="notifications" class="page" data-page="notifications">
+        <div class="page-banner">
+          <div class="container">
+            <h1>🔔 <span data-i18n="alerts"></span></h1>
+            <p data-i18n="alertsLead"></p>
+          </div>
+        </div>
+        <div class="container stack">
+          <button class="btn btn-primary add-fab" id="btn-add-note" type="button" hidden>＋</button>
+          <form class="info-card editor" id="form-note" hidden>
+            <h2 data-i18n="sendAlert"></h2>
+            <label data-i18n="message"><textarea name="body" rows="3" required></textarea></label>
+            <label data-i18n="addImage"><input name="image" type="file" accept="image/*"></label>
+            <label data-i18n="addFile"><input name="attachment" type="file"></label>
+            <div class="form-row">
+              <button class="btn btn-primary" type="submit" data-i18n="send"></button>
+              <button class="btn btn-text" type="button" id="btn-cancel-note" data-i18n="cancel"></button>
+            </div>
+          </form>
+          <div id="note-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- PUPIL OF MONTH (teacher management) -->
+      <section id="pupil-month" class="page" data-page="pupil-month">
+        <div class="page-banner">
+          <div class="container">
+            <h1>🏆 <span data-i18n="pupilOfMonth"></span></h1>
+          </div>
+        </div>
+        <div class="container stack">
+          <form class="info-card editor" id="form-sotm" hidden>
+            <h2 data-i18n="setPupilOfMonth"></h2>
+            <label data-i18n="pupilName"><input name="name" required></label>
+            <label data-i18n="gradeAndClass"><input name="grade" placeholder="7B" required></label>
+            <label data-i18n="reason"><textarea name="reason" rows="3" required></textarea></label>
+            <label data-i18n="addImage"><input name="photo" type="file" accept="image/*"></label>
+            <button class="btn btn-primary" type="submit" data-i18n="save"></button>
+          </form>
+          <article class="sotm-card" id="sotm-page-card"></article>
+        </div>
+      </section>
+
+      <!-- SCHOOL MOMENTS -->
+      <section id="moments" class="page" data-page="moments">
+        <div class="page-banner">
+          <div class="container">
+            <h1>📸 School Moments</h1>
+            <p>Photos from school life, approved by your teacher.</p>
+          </div>
+        </div>
+        <div class="container stack">
+          <!-- Upload form — shown only to approved pupils via JS -->
+          <form class="info-card editor" id="form-moment" hidden>
+            <h2>Share a School Moment</h2>
+            <label>Photo <input name="photo" type="file" accept="image/*" required></label>
+            <label>Caption (optional) <input name="caption" type="text" placeholder="Add a caption…" maxlength="150"></label>
+            <p class="hint-box">Your photo will be sent to your teacher for approval before it appears here.</p>
+            <button class="btn btn-primary" type="submit">Send for Approval</button>
+          </form>
+          <!-- Pupil's own pending uploads -->
+          <div id="moments-my-pending" hidden></div>
+          <!-- Approved moments -->
+          <div id="moments-list" class="moments-grid"></div>
+        </div>
+      </section>
+
+      <!-- MY CLASS -->
+      <section id="my-class" class="page" data-page="my-class">
+        <div class="page-banner">
+          <div class="container">
+            <h1>👥 My Class</h1>
+            <p>The approved members of your class.</p>
+          </div>
+        </div>
+        <div class="container stack">
+          <div id="my-class-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- TEACHER: STUDENT APPROVALS -->
+      <section id="pupil-approvals" class="page" data-page="pupil-approvals">
+        <div class="page-banner">
+          <div class="container">
+            <h1>✅ Student Approvals</h1>
+            <p>Pupils waiting to join your class.</p>
+          </div>
+        </div>
+        <div class="container stack">
+          <div id="pupil-approvals-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- TEACHER: MEDIA APPROVAL -->
+      <section id="media-approvals" class="page" data-page="media-approvals">
+        <div class="page-banner">
+          <div class="container">
+            <h1>🖼️ Media Approval</h1>
+            <p>Photos submitted by pupils — approve or reject.</p>
+          </div>
+        </div>
+        <div class="container stack">
+          <div id="media-approvals-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- TEACHER INBOX -->
+      <section id="teacher-inbox" class="page" data-page="teacher-inbox">
+        <div class="page-banner">
+          <div class="container">
+            <h1>📬 Teacher Inbox</h1>
+            <p>Student requests, ideas, and photo submissions — all in one place.</p>
+          </div>
+        </div>
+        <div class="container stack">
+          <div id="teacher-inbox-list" class="stack"></div>
+        </div>
+      </section>
+
+      <!-- TEACHER PROFILE -->
+      <section id="teacher-profile" class="page" data-page="teacher-profile">
+        <div class="page-banner">
+          <div class="container">
+            <h1>👤 My Profile</h1>
+            <p>Your teacher profile for this class.</p>
+          </div>
+        </div>
+        <div class="container stack">
+          <article class="info-card" id="teacher-profile-card">
+            <h2>Teacher Profile</h2>
+            <p style="color:var(--muted);font-style:italic;margin-top:8px;">Add your info here.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- OFFICE / ADMIN -->
+      <section id="office" class="page" data-page="office">
+        <div class="page-banner">
+          <div class="container">
+            <h1>🏫 School Office</h1>
+          </div>
+        </div>
+        <div class="container stack">
+          <article class="info-card">
+            <h2>Registered Classes</h2>
+            <div id="approved-teachers" class="stack"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="page" data-page="about">
+        <div class="page-banner">
+          <div class="container">
+            <h1>ℹ️ <span data-i18n="about"></span></h1>
+            <p>Shkolla 7 Marsi · grades 5–9</p>
+          </div>
+        </div>
+        <div class="container stack">
+          <article class="info-card">
+            <h2 data-i18n="whatThisAppIsFor"></h2>
+            <ul class="plain-list">
+              <li data-i18n="aboutItem1"></li>
+              <li data-i18n="aboutItem2"></li>
+              <li data-i18n="aboutItem3"></li>
+              <li data-i18n="aboutItem4"></li>
+              <li data-i18n="aboutItem5"></li>
+            </ul>
+          </article>
+          <article class="info-card">
+            <h2 data-i18n="whatThisAppIsNot"></h2>
+            <ul class="plain-list">
+              <li data-i18n="notItem1"></li>
+              <li data-i18n="notItem2"></li>
+              <li data-i18n="notItem3"></li>
+              <li data-i18n="notItem4"></li>
+            </ul>
+          </article>
+          <article class="info-card about-credits">
+            <p class="credits-made" data-i18n="madeBy"></p>
+            <p class="credits-class">6-B</p>
+            <p class="credits-joke">I know crazy right?</p>
+          </article>
+        </div>
+      </section>
+
+
+      <!-- SETTINGS -->
+      <section id="settings" class="page" data-page="settings">
+        <div class="page-banner">
+          <div class="container">
+            <h1>⚙️ Settings</h1>
+            <p>Personalise your School Hub experience.</p>
+          </div>
+        </div>
+        <div class="container stack" id="settings-content">
+          <!-- Populated by renderSettingsPage() -->
+        </div>
+      </section>
+
+      <!-- STUDENT INBOX -->
+      <section id="student-inbox" class="page" data-page="student-inbox">
+        <div class="page-banner">
+          <div class="container">
+            <h1>📬 My Inbox</h1>
+            <p>Messages and appeal decisions from your teacher.</p>
+          </div>
+        </div>
+        <div class="container stack" id="student-inbox-list">
+          <!-- Populated by renderStudentInbox() -->
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>🏫 School Hub · Shkolla 7 Marsi</p>
+        <p class="footer-note" data-i18n="footerNote"></p>
+      </div>
+    </footer>
+  </div>
+  <!-- END APP SHELL -->
+
+  <!-- Club modal -->
+  <div class="modal" id="club-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="club-modal-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close">✕</button>
+      <div id="club-modal-body"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
